@@ -1,3 +1,8 @@
+#note2
+{
+size: 10px;
+}
+
 .heading
 {
     font-size:23px;
@@ -61,6 +66,7 @@ canvas{
     height: 360px;
     border-radius: 20px;
     border: 5px solid white;
+    margin-top: 40px;
 }
 
 .play_button
@@ -68,3 +74,4 @@ canvas{
     width:130px;
     font-size:25px;
 }
+
