@@ -3,10 +3,12 @@ Music2 = ""
 
 
 //wrist coords are numbers
-leftWristX = 0
-leftWristY = 0
-rightWristX = 0
-rightWristY = 0
+leftWristX = 0;
+leftWristY = 0;
+rightWristX = 0;
+rightWristY = 0;
+scoreLeftWrist = 0;
+
 
 
 function preload()
@@ -38,6 +40,8 @@ function gotPoses(results)
     if(results.length > 0)
     {
         console.log(results);
+        scoreLeftWrist = results[0].pose.keypoints[9].score;
+        console.log("ScoreLeftWrist = " + scoreLeftWrist);
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
         console.log(leftWristX + " = LeftWristX " + leftWristY + " = LeftWristY");
@@ -49,7 +53,23 @@ function gotPoses(results)
 
 function draw()
 {
-    image(video, 0, 0, 600, 500); //lua doesnt require semicolons, but JS does
+
+    //just an fyi, but going down = going up in Y
+    //in Studio and any other 3d engine, this is completely different
+
+    image(video, 0, 0, 600, 500);
+
+    fill("#800000");
+    stroke("FF00000");
+    if (scoreLeftWrist > 0.2)
+    {
+       
+        circle(leftWristX, leftWristY, 20);
+        inNumberleftwristY = Number(leftWristY);
+        remove_decimals = floor(inNumberleftwristY);
+        document.getElementById("Music").innerHTML = "Music: Abstract";
+    
+    }
 }
 
 function play()
