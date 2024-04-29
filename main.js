@@ -8,6 +8,7 @@ leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0;
 scoreLeftWrist = 0;
+scoreRightWrist = 0;
 
 
 
@@ -45,6 +46,7 @@ function gotPoses(results)
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
         console.log(leftWristX + " = LeftWristX " + leftWristY + " = LeftWristY");
+        scoreRightWrist = results[0].pose.keypoints[10].score;
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
         console.log(rightWristX + " = rightWristX " + rightWristY + " = rightWristY");
@@ -65,14 +67,27 @@ function draw()
     {
        
         circle(leftWristX, leftWristY, 20);
-        inNumberleftwristY = Number(leftWristY);
-        remove_decimals = floor(inNumberleftwristY);
         
         Music2.stop();
-        if (Music1.isPlaying()=false)
+        if (Music1.isPlaying() == false)
         {
             Music1.play();
             document.getElementById("Music").innerHTML = "Music: Abstract";
+
+        }
+
+    
+    }
+    if (scoreRightWrist > 0.2)
+    {
+       
+        circle(rightWristX, rightWristY, 20);
+        
+        Music1.stop();
+        if (Music2.isPlaying() == false)
+        {
+            Music2.play();
+            document.getElementById("Music").innerHTML = "Music: Harry Potter?";
 
         }
 
@@ -88,4 +103,11 @@ function play()
     //1 Is normal, like on pretty much everything but percentages
     song.setRate(1)
     //Speedhax lol spaceuk
+}
+
+function Stop()
+{
+    Music1.stop()
+    Music2.stop()
+    document.getElementById("Music").innerHTML = "Music:  Utter Silence by anon";
 }
