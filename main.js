@@ -67,7 +67,15 @@ function draw()
         circle(leftWristX, leftWristY, 20);
         inNumberleftwristY = Number(leftWristY);
         remove_decimals = floor(inNumberleftwristY);
-        document.getElementById("Music").innerHTML = "Music: Abstract";
+        
+        Music2.stop();
+        if (Music1.isPlaying()=false)
+        {
+            Music1.play();
+            document.getElementById("Music").innerHTML = "Music: Abstract";
+
+        }
+
     
     }
 }
@@ -75,7 +83,7 @@ function draw()
 function play()
 {
    // song.play();
-
+    
     song.setVolume(1)
     //1 Is normal, like on pretty much everything but percentages
     song.setRate(1)
